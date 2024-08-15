@@ -7,17 +7,16 @@ void setup()
   background(255);
    
   chain.segments[0].mass = 0;
+  chain.segments[0].col = color(255, 255, 255);
 }
 
 void draw()
 {
   background(150);
+  
   chain.segments[chain.numSegments-1].pos.x = mouseX;
   chain.segments[chain.numSegments-1].pos.y = mouseY;
   
-
-  //PVector size = new PVector(width/2, height/2);
-
   chain.ResolveConstrains();
   chain.Draw();
 
