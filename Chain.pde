@@ -51,7 +51,6 @@ class Chain
 
       PVector diff = PVector.sub(segments[i+1].pos, segments[i].pos);
       c.distance = diff.mag();
-
       constrains[i] = c;
     }
   }
@@ -81,8 +80,8 @@ class Chain
     {
       Segment s1 = segments[c.idx_a];
       Segment s2 = segments[c.idx_b];
-        
-     // s1.pos = ConstrainDistance(s1.pos, s2.pos, c.distance);
+      
+      //s1.pos = ConstrainDistance(s1.pos, s2.pos, c.distance);
 
       PVector diff = PVector.sub(s2.pos, s1.pos);
      
@@ -97,10 +96,10 @@ class Chain
       // direction in which we will move the particles
       PVector dir = diff.normalize();
 
-      float alpha = c.compliance / 0.016;
-      //float alpha = 0;
-      s1.pos = PVector.add(s1.pos, PVector.mult(PVector.mult(dir, -displacement), (s1.mass / (s1.mass + s2.mass + alpha))));
-      s2.pos = PVector.add(s2.pos, PVector.mult(PVector.mult(dir, displacement), (s2.mass / (s1.mass + s2.mass + alpha))));
+     // float alpha = c.compliance / 0.016;
+      
+     s1.pos = PVector.add(s1.pos, PVector.mult(PVector.mult(dir, -displacement), (s1.mass / (s1.mass + s2.mass))));
+     s2.pos = PVector.add(s2.pos, PVector.mult(PVector.mult(dir, displacement), (s2.mass / (s1.mass + s2.mass))));
     }
   };
 
